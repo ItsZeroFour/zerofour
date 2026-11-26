@@ -1,0 +1,323 @@
+/* ---------------------------------------------------------------------------
+   Подход — закреплённая сцена с 3D-литерой. Трек высотой в N экранов,
+   внутри — «липкая» сцена: литера слева, принципы справа.
+   --------------------------------------------------------------------------- */
+
+.section {
+  position: relative;
+  z-index: var(--z-content);
+  width: min(100%, var(--grid-max));
+  margin-inline: auto;
+  padding: var(--space-2xl) var(--grid-margin) 0;
+  scroll-margin-top: var(--header-h);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols), 1fr);
+  column-gap: var(--grid-gutter);
+  row-gap: var(--space-s);
+  padding-bottom: var(--space-l);
+  border-bottom: var(--line-ink);
+}
+
+.kicker {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: var(--space-2xs);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--color-mute);
+}
+
+.title {
+  grid-column: 1 / -1;
+  font-family: var(--font-display);
+  font-size: var(--step-5);
+  font-weight: 400;
+  font-variation-settings: 'wdth' var(--display-wdth-name), 'wght' var(--display-wght-rest);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+}
+
+.intro {
+  grid-column: 1 / -1;
+  max-width: var(--measure);
+  font-size: var(--step-1);
+  line-height: 1.35;
+  color: var(--color-ink-soft);
+}
+
+/* ---- Трек и сцена --------------------------------------------------------- */
+.track {
+  position: relative;
+  height: var(--approach-track);
+}
+
+.stage {
+  position: sticky;
+  top: var(--header-h);
+  height: calc(100svh - var(--header-h));
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: var(--space-s);
+  padding-block: var(--space-s);
+}
+
+.visual {
+  position: relative;
+  min-height: 0;
+  border-bottom: var(--line);
+  translate: var(--shake, 0px) 0; /* дрожь сцены в момент удара */
+}
+
+.defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.stageKicker,
+.mirror,
+.printed {
+  position: absolute;
+  z-index: 1;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--color-mute);
+}
+
+.stageKicker {
+  top: var(--space-xs);
+  left: 0;
+}
+
+.mirror {
+  top: var(--space-xs);
+  right: 0;
+  opacity: var(--mirror, 0);
+}
+
+.printed {
+  right: 0;
+  bottom: var(--space-xs);
+  color: var(--color-accent-text);
+  opacity: var(--printed, 0);
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+}
+
+/* Оттиск на бумаге: проступает ровно в момент удара (прогресс → --print) */
+.imprint {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--color-accent);
+  mix-blend-mode: multiply;
+  opacity: calc(var(--print, 0) * var(--imprint-opacity));
+  scale: calc(1.04 - 0.04 * var(--print, 0));
+}
+
+.imprintMark,
+.imprintGhost {
+  grid-area: 1 / 1;
+  width: var(--imprint-w);
+  filter: url(#zf-ink);
+}
+
+/* второй, слабый «прогон» со сдвигом — живая печать, а не вектор */
+.imprintGhost {
+  opacity: 0.35;
+  translate: var(--misreg-ghost) var(--misreg-ghost);
+}
+
+.counter {
+  position: absolute;
+  left: 0;
+  bottom: var(--space-xs);
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2xs);
+  font-family: var(--font-display);
+  font-size: var(--step-4);
+  font-variation-settings: 'wdth' var(--display-wdth-fact), 'wght' var(--display-wght-fact);
+  line-height: var(--leading-display);
+}
+
+.counterOf {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-variation-settings: normal;
+  color: var(--color-mute);
+}
+
+/* ---- Принципы ------------------------------------------------------------- */
+.list {
+  display: grid;
+  align-content: end;
+}
+
+.principle {
+  display: none;
+  grid-template-columns: auto 1fr;
+  column-gap: var(--space-s);
+  row-gap: var(--space-2xs);
+}
+
+.principle[data-active='true'] {
+  display: grid;
+  animation: swap var(--dur-base) var(--ease-scene);
+}
+
+.pNum {
+  grid-row: span 3;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-mono);
+  color: var(--color-accent-text);
+}
+
+.pTitle {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 400;
+  font-variation-settings: 'wdth' var(--display-wdth-name), 'wght' var(--display-wght-name);
+  line-height: var(--leading-tight);
+  text-transform: uppercase;
+}
+
+.pText {
+  max-width: var(--measure-text);
+  color: var(--color-ink-soft);
+}
+
+.pProof {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+@keyframes swap {
+  from {
+    opacity: 0;
+    translate: 0 var(--space-s);
+  }
+}
+
+/* ===========================================================================
+   md+ : литера слева, все принципы справа (активный — в полную силу)
+   =========================================================================== */
+@media (min-width: 48rem) {
+  .title {
+    grid-column: 1 / 6;
+  }
+
+  .intro {
+    grid-column: 6 / -1;
+    align-self: end;
+  }
+
+  .stage {
+    grid-template-columns: repeat(var(--grid-cols), 1fr);
+    grid-template-rows: 1fr;
+    column-gap: var(--grid-gutter);
+    padding-block: var(--space-l);
+  }
+
+  .visual {
+    grid-column: 1 / 5;
+    border-bottom: 0;
+  }
+
+  .list {
+    grid-column: 5 / -1;
+    align-content: center;
+    gap: var(--space-m);
+  }
+
+  .principle {
+    display: grid;
+    opacity: 0.22;
+    transition: opacity var(--dur-base) var(--ease-out);
+  }
+
+  .principle[data-active='true'] {
+    opacity: 1;
+    animation: none;
+  }
+
+  /* неактивные — только номер и заголовок, чтобы сцена помещалась в экран */
+  .track:not([data-static]) .principle:not([data-active]) .pText,
+  .track:not([data-static]) .principle:not([data-active]) .pProof {
+    display: none;
+  }
+}
+
+@media (min-width: 80rem) {
+  .title {
+    grid-column: 1 / 8;
+  }
+
+  .intro {
+    grid-column: 9 / -1;
+  }
+
+  .visual {
+    grid-column: 1 / 8;
+  }
+
+  .list {
+    grid-column: 8 / -1;
+  }
+
+  .pTitle {
+    font-size: var(--step-3);
+  }
+}
+
+/* ---- Без движения: обычный поток, оттиск и все принципы видны сразу ------- */
+.track[data-static] {
+  height: auto;
+
+  .stage {
+    position: static;
+    height: auto;
+  }
+
+  .visual {
+    aspect-ratio: 4 / 3;
+    translate: none;
+  }
+
+  .list {
+    gap: var(--space-l);
+  }
+
+  .principle {
+    display: grid;
+    opacity: 1;
+    animation: none;
+  }
+
+  .imprint {
+    opacity: var(--imprint-opacity);
+    scale: 1;
+  }
+
+  .mirror,
+  .counter,
+  .printed {
+    display: none;
+  }
+}

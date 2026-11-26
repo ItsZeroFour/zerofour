@@ -1,0 +1,8 @@
+.set {
+  display: inline;
+}
+
+.sort {
+  display: inline-block;
+  will-change: transform;
+}

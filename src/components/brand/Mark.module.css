@@ -1,0 +1,8 @@
+.mark {
+  fill: currentColor;
+  height: auto;
+}
+
+.bar {
+  fill: var(--color-accent);
+}

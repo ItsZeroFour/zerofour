@@ -1,0 +1,109 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-s);
+  min-height: var(--header-h);
+  width: 100%;
+  padding-inline: var(--header-edge);
+  background: var(--color-paper);
+  border-bottom: var(--line);
+  font-family: var(--font-text);
+  font-size: var(--step--2);
+  letter-spacing: normal;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  min-height: var(--tap-min);
+  margin-right: auto;
+}
+
+.mark {
+  flex-shrink: 0;
+  width: var(--size-mark-header);
+}
+
+.word {
+  /* слово появляется в шапке, когда мачта ушла с экрана */
+  display: inline-block;
+  opacity: 0;
+  translate: 0 0.4em;
+  transition:
+    opacity var(--dur-base) var(--ease-out),
+    translate var(--dur-base) var(--ease-out);
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  font-variation-settings: 'wdth' var(--display-wdth-rest), 'wght' var(--display-wght-rest);
+  letter-spacing: 0;
+}
+
+.status {
+  display: none;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  align-items: center;
+  gap: var(--space-2xs);
+  color: var(--color-ink);
+}
+
+.dot {
+  flex-shrink: 0;
+  width: var(--size-dot);
+  height: var(--size-dot);
+  background: var(--color-accent);
+}
+
+.lang {
+  display: flex;
+}
+
+.langLink {
+  display: inline-grid;
+  place-items: center;
+  min-width: var(--tap-min);
+  min-height: var(--tap-min);
+  color: var(--color-mute);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.langLink:hover {
+  color: var(--color-ink);
+}
+
+.langLink[aria-current='true'] {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-thickness: var(--line-w);
+  text-underline-offset: 0.35em;
+}
+
+@media (min-width: 80rem) {
+  .status {
+    display: inline-flex;
+  }
+}
+
+/* на телефоне места нет — только знак */
+@media (max-width: 47.99rem) {
+  .word {
+    display: none;
+  }
+}
+
+:global(html[data-mast-out]) .word {
+  opacity: 1;
+  translate: 0 0;
+}
+.sections { display: none; }
+@media (min-width: 48rem) {
+  .sections { display: flex; align-items: center; gap: var(--space-l); font: var(--step--2)/var(--leading-mono) var(--font-mono); }
+  .sections a { display: inline-flex; align-items: center; min-height: var(--tap-min); white-space: nowrap; }
+  .sections a:hover { color: var(--color-accent-text); }
+}

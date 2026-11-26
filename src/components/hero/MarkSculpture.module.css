@@ -1,0 +1,13 @@
+.sculpture { position: relative; min-width: 0; }
+.stage { position: relative; height: var(--size-sculpture-stage); touch-action: pan-y; overflow: hidden; }
+.fallback { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.stage canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; visibility: hidden; }
+.sculpture[data-scene-ready] .stage canvas { visibility: visible; }
+.sculpture[data-scene-ready] .fallback { visibility: hidden; }
+.caption { display: flex; justify-content: space-between; align-items: center; gap: var(--space-xs); font: var(--step--2)/var(--leading-mono) var(--font-mono); color: var(--color-mute); }
+.caption > span { max-width: 20ch; }
+.caption button { display: flex; align-items: center; justify-content: space-between; gap: var(--space-s); min-height: var(--tap-min); padding: var(--space-xs) var(--space-s); color: var(--color-ink); background: var(--color-paper-deep); text-align: left; transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out); }
+.caption button:disabled { visibility: hidden; }
+.caption button:hover, .caption button[aria-expanded='true'] { background: var(--color-ink); color: var(--color-paper); }
+.caption button:active { background: var(--color-accent); color: var(--color-on-accent); }
+.hint { min-height: calc(var(--step--2) * var(--leading-mono) * 2); margin-block: var(--space-xs) var(--space-s); font: var(--step--2)/var(--leading-mono) var(--font-mono); color: var(--color-mute); }

@@ -1,0 +1,84 @@
+/* Мачта: типографика задаётся снаружи (Hero.module.css → .mast) */
+.mast {
+  position: relative;
+  contain: layout; /* reflow от смены wdth не выходит за мачту */
+}
+
+.ink,
+.accent {
+  display: block;
+}
+
+.ink {
+  position: relative;
+  color: var(--color-ink);
+  mix-blend-mode: multiply;
+}
+
+/* Второй прогон: в покое сдвинут на --misreg, курсор добавляет --mx/--my */
+.accent {
+  position: absolute;
+  inset: 0;
+  color: var(--color-accent);
+  transform: translate(var(--misreg-x), var(--misreg-y));
+  translate: var(--mx, 0em) var(--my, 0em);
+  animation: misprint var(--dur-slow) var(--ease-out) backwards;
+  animation-delay: calc(var(--dur-scene) * 0.55);
+}
+
+.line {
+  display: inline;
+}
+
+/* Литера: «падает» в строку, как металлическая литера в верстатку.
+   Металл — без отскока, твёрдая посадка. */
+.sort {
+  display: inline-block;
+  animation: set-sort var(--dur-slow) var(--ease-scene) backwards;
+  animation-delay: calc(var(--i) * var(--stagger-letter));
+}
+
+@media (min-width: 80rem) {
+  .line {
+    display: inline;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sort,
+  .accent {
+    animation: fade var(--dur-fade) linear backwards;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes set-sort {
+  0% {
+    opacity: 0;
+    transform: translateY(-0.55em);
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Оранжевый прогон сначала совпадает с тушью, затем «уезжает» в приводку */
+@keyframes misprint {
+  from {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate(var(--misreg-x), var(--misreg-y));
+    opacity: 1;
+  }
+}

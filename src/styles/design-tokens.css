@@ -1,0 +1,200 @@
+/* ==========================================================================
+   ZeroFour — design tokens
+   Единственный источник цветов, шрифтов, отступов, линий и движения.
+   Направление: «Оттиск» (журнал поверх чертежа) + «Наборная касса».
+   Брейкпоинты (в media-запросах токены недоступны, поэтому только здесь
+   как договорённость): md = 48rem (768px), lg = 80rem (1280px).
+   ========================================================================== */
+
+:root {
+  /* ---- Цвет: 1 доминанта (бумага/тушь) + 1 акцент + нейтрали ---------- */
+  --color-paper: #f4f3ee;          /* фон, тёплая бумага */
+  --color-paper-deep: #eceae2;     /* смена фона секций */
+  --color-ink: #14140f;            /* текст, почти чёрный */
+  --color-ink-soft: #3a3933;       /* вторичный текст — 10.6:1 на бумаге */
+  --color-mute: #6b6960;           /* метки, подписи — 5.1:1 (AA для мелкого) */
+  --color-line: #d9d7ce;           /* линии сетки 1px */
+  --color-line-strong: #b9b6ab;    /* рамки окон, регистры */
+  --color-accent: #ff4d00;         /* только действия и ключевые места */
+  --color-accent-press: #e04400;
+  --color-accent-text: #b83700;   /* акцент для мелкого текста — AA на бумаге */
+  --color-on-accent: #14140f;      /* текст на акценте — 6:1 */
+  --color-metal: #8c887d;          /* металл 3D-литеры (гарт, светлый сплав) */
+  --color-focus: #14140f;
+  --color-overlay: rgb(244 243 238 / 0.84); /* калька поверх страницы */
+
+  /* ---- Шрифты (переменные задаёт next/font в fonts.ts) ------------------ */
+  --font-display: var(--ff-science-gothic), 'Arial Narrow', sans-serif;
+  --font-text: var(--ff-golos), 'Helvetica Neue', sans-serif;
+  --font-mono: var(--ff-martian), ui-monospace, monospace;
+
+  /* Оси display-шрифта: покой и «нажим» (для курсора/скролла) */
+  --display-wdth-rest: 118;
+  --display-wght-rest: 820;
+  --display-wdth-min: 62;
+  --display-wdth-max: 168;
+  --display-wght-min: 300;
+  --display-wght-max: 900;
+  /* Имя — узко, контраст ширины с мачтой; цифры — спокойнее */
+  --display-wdth-name: 72;
+  --display-wght-name: 760;
+  --display-wdth-fact: 80;
+  --display-wght-fact: 560;
+
+  /* ---- Модульная шкала: 1.2 (mobile) → 1.333 (desktop), fluid ---------- */
+  --step--2: clamp(0.6944rem, 0.68rem + 0.07vw, 0.7rem);
+  --step--1: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --step-0: clamp(1rem, 0.96rem + 0.18vw, 1.125rem);
+  --step-1: clamp(1.2rem, 1.12rem + 0.38vw, 1.5rem);
+  --step-2: clamp(1.44rem, 1.29rem + 0.72vw, 2rem);
+  --step-3: clamp(1.728rem, 1.46rem + 1.3vw, 2.666rem);
+  --step-4: clamp(2.074rem, 1.62rem + 2.2vw, 3.554rem);
+  --step-5: clamp(2.488rem, 1.76rem + 3.6vw, 4.738rem);
+  /* Мачта (masthead): ширина слова = ratio × font-size (замерено).
+     2 строки на телефоне (уже, выше), 1 строка на десктопе. */
+  --mast-wdth-stacked: 80;
+  --mast-ratio-stacked: 3.17;
+  --mast-wdth-line: 118;
+  --mast-ratio-line: 8.06;
+  --mast-wdth-editorial: 88;
+  --mast-ratio-editorial: 8;
+  --display-wght-editorial: 680;
+  --display-wdth-author: 65;
+  --display-wght-author: 520;
+  --tracking-mast-editorial: -0.035em;
+  --leading-mast-editorial: 1.05;
+  --size-hero-name: clamp(2.6rem, 4.8vw, 4.8rem);
+  --size-sculpture-stage: clamp(19rem, 34vw, 30rem);
+
+  --leading-display: 0.82;
+  --leading-tight: 1.08;
+  --leading-text: 1.5;
+  --leading-mono: 1.45;
+  --tracking-display: -0.025em;
+  --tracking-mono: 0.04em;
+  --measure: 34ch;
+  --measure-wide: 60ch;
+  --metric-min: 7rem;
+  --measure-text: 44ch;
+  --size-metric-lead: min(clamp(3rem, 1.5rem + 6vw, 7rem), 19cqi); /* главная цифра главного проекта */
+
+  --size-section-title: clamp(2.8rem, 1.2rem + 7vw, 8rem);
+  --size-work-title-wide: clamp(2.8rem, 6.2vw, 7rem);
+  --size-project-poster: clamp(3rem, 1rem + 8vw, 9rem);
+  --size-project-number: clamp(7rem, 3rem + 20vw, 24rem);
+  --size-profile-title: clamp(2.4rem, 1.5rem + 4vw, 5.5rem);
+  --visual-min: 24rem;
+  --color-on-ink-mute: var(--color-line-strong);
+  --line-on-ink: var(--line-w) solid var(--color-mute);
+  --visual-min-desktop: 34rem;
+  --portrait-max: 38rem;
+  --hero-body-min: 28rem;
+  --metadata-label-width: 5rem;
+
+  /* ---- Отступы, fluid ---------------------------------------------------- */
+  --space-3xs: clamp(0.25rem, 0.23rem + 0.1vw, 0.3125rem);
+  --space-2xs: clamp(0.5rem, 0.46rem + 0.18vw, 0.625rem);
+  --space-xs: clamp(0.75rem, 0.7rem + 0.27vw, 0.9375rem);
+  --space-s: clamp(1rem, 0.93rem + 0.36vw, 1.25rem);
+  --space-m: clamp(1.5rem, 1.39rem + 0.54vw, 1.875rem);
+  --space-l: clamp(2rem, 1.86rem + 0.71vw, 2.5rem);
+  --space-xl: clamp(3rem, 2.79rem + 1.07vw, 3.75rem);
+  --space-2xl: clamp(4rem, 3.57rem + 2.14vw, 5.5rem);
+  --space-3xl: clamp(6rem, 5.14rem + 4.29vw, 9rem);
+
+  /* ---- Сетка ------------------------------------------------------------- */
+  --grid-cols: 4;
+  --grid-margin: 1rem;
+  --grid-gutter: 0.75rem;
+  --grid-max: 100rem;
+  --header-h: 3.5rem;
+  --header-edge: clamp(1rem, 1.5vw, 2rem);
+  --assembly-perspective: 1100px;
+  --assembly-depth-back: 25px;
+  --assembly-depth-type: 70px;
+  --assembly-depth-front: 125px;
+  --circuit-height: 20rem;
+  --dur-dialog: 280ms;
+  --palette-w: 40rem;
+  --approach-track: 420svh; /* длина сцены «Подход»: ~1 экран на принцип */
+  --imprint-w: min(62%, 26rem);
+  --imprint-opacity: 0.88;
+  --misreg-ghost: 1.5px;
+  --size-contact-title: calc(100cqi / 9.2); /* «Напишите» во всю ширину полосы */
+  --size-email-max: 8.5rem;
+  --email-char-ratio: 0.74; /* средняя ширина знака Science Gothic wdth 80, в em (с запасом под стрелку) */
+  --palette-list-h: 26rem;
+
+  /* ---- Линии и формы: без теней, без скруглений ------------------------- */
+  --line-w: 1px;
+  --line: var(--line-w) solid var(--color-line);
+  --line-strong: var(--line-w) solid var(--color-line-strong);
+  --line-ink: var(--line-w) solid var(--color-ink);
+  --radius: 0;
+  --focus-ring: 2px solid var(--color-focus);
+  --focus-ring-on-ink: 2px solid var(--color-paper);
+  --focus-ring-on-paper: 2px solid var(--color-ink);
+  --focus-offset: 3px;
+  --tap-min: 2.75rem; /* 44px */
+  --reg-mark: 0.875rem; /* крестик-регистр */
+  --size-mark-header: 2rem;
+  --size-dot: 0.5rem;
+
+  /* ---- Фактура ----------------------------------------------------------- */
+  --grain-opacity: 0.035;
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.2 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  /* ---- Движение: медленно и плавно --------------------------------------- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);       /* expo-out, основное */
+  --ease-scene: cubic-bezier(0.22, 1, 0.36, 1);    /* сцена загрузки: ровнее expo */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-press: cubic-bezier(0.3, 0, 0.2, 1);
+  --dur-fast: 180ms;
+  --dur-base: 420ms;
+  --dur-slow: 900ms;
+  --dur-scene: 1600ms;
+  --gate-scroll-factor: .85;
+  --dur-roll: 450ms;
+  --dur-fade: 200ms; /* не обнуляется: спокойное появление при reduced-motion */
+  --stagger-letter: 60ms;  /* 8 литер → 420 мс, в бюджете < 500 мс */
+  --stagger-item: 90ms;
+  --misreg-x: -0.022em;   /* «сбитая приводка» в покое */
+  --misreg-y: 0.008em;
+
+  /* ---- Слои -------------------------------------------------------------- */
+  --z-grid: 0;
+  --z-content: 1;
+  --z-figure: 2;
+  --z-header: 10;
+  --z-grain: 20;
+  --z-palette: 30;
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --grid-cols: 8;
+    --grid-margin: 1.75rem;
+    --grid-gutter: 1rem;
+    --header-h: 4rem;
+  }
+}
+
+@media (min-width: 80rem) {
+  :root {
+    --grid-cols: 12;
+    --grid-margin: 2.5rem;
+    --grid-gutter: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+    --dur-slow: 0ms;
+    --dur-scene: 0ms;
+    --dur-dialog: 0ms;
+    --stagger-letter: 0ms;
+    --stagger-item: 0ms;
+  }
+}

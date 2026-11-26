@@ -1,0 +1,26 @@
+.reg {
+  position: absolute;
+  width: var(--reg-mark);
+  height: var(--reg-mark);
+  fill: none;
+  stroke: var(--color-ink);
+  stroke-width: var(--line-w);
+  vector-effect: non-scaling-stroke;
+}
+
+.tl {
+  top: calc(var(--reg-mark) / -2);
+  left: calc(var(--reg-mark) / -2);
+}
+.tr {
+  top: calc(var(--reg-mark) / -2);
+  right: calc(var(--reg-mark) / -2);
+}
+.bl {
+  bottom: calc(var(--reg-mark) / -2);
+  left: calc(var(--reg-mark) / -2);
+}
+.br {
+  bottom: calc(var(--reg-mark) / -2);
+  right: calc(var(--reg-mark) / -2);
+}

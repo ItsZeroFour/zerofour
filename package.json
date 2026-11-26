@@ -1,0 +1,41 @@
+{
+  "name": "zerofour",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --webpack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@payloadcms/db-vercel-postgres": "^3.94.2",
+    "@payloadcms/next": "^3.94.2",
+    "@payloadcms/richtext-lexical": "^3.94.2",
+    "@payloadcms/storage-vercel-blob": "^3.94.2",
+    "@payloadcms/translations": "^3.94.2",
+    "@react-three/drei": "^10.7.9",
+    "@react-three/fiber": "^9.8.2",
+    "cmdk": "^1.1.1",
+    "graphql": "^16.15.0",
+    "gsap": "^3.15.1",
+    "lenis": "^1.3.28",
+    "motion": "^14.14.0",
+    "next": "16.4.6",
+    "next-intl": "^4.16.2",
+    "payload": "^3.94.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "three": "^0.187.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/three": "^0.187.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.6",
+    "sharp": "^0.35.5",
+    "typescript": "^5"
+  }
+}

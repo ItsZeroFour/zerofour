@@ -1,0 +1,135 @@
+{
+  "a11y": {
+    "skip": "Skip to content",
+    "home": "ZeroFour — home",
+    "lang": "Site language"
+  },
+  "header": {
+    "menu": "Menu",
+    "about": "About me"
+  },
+  "hero": {
+    "clientsLabel": "Built for",
+    "factsLabel": "In numbers",
+    "underTitle": "Inside the interface",
+    "underText": "Appearance, behaviour, and decisions in code. Explore each side of my work through the projects below.",
+    "scrollHint": "Explore the projects",
+    "leadDefault": "I build interfaces with React and Next.js. I especially enjoy complex problems. I’ve worked on projects used by tens and hundreds of thousands of people."
+  },
+  "palette": {
+    "title": "Command palette",
+    "placeholder": "Where to? Type or pick…",
+    "empty": "Nothing found. Try “work” or “telegram”.",
+    "groupNav": "Navigate",
+    "groupContact": "Get in touch",
+    "groupSite": "Site",
+    "work": "Work",
+    "top": "Back to the cover",
+    "telegram": "Message on Telegram",
+    "email": "Send an email",
+    "copyEmail": "Copy email",
+    "copied": "Email copied",
+    "lang": "Перейти на русский",
+    "hint": "↑↓ select · ↵ open · esc close",
+    "approach": "About me",
+    "about": "About me",
+    "contacts": "Contacts"
+  },
+  "work": {
+    "index": "01",
+    "label": "Work",
+    "title": "Work",
+    "intro": "{count} projects: what the user sees and how it works. Each case explains my contribution.",
+    "client": "Client",
+    "role": "Role",
+    "years": "Years",
+    "stack": "Stack",
+    "live": "Open site",
+    "repo": "Code",
+    "nda": "Under NDA — no links",
+    "results": "Results",
+    "more": "More of my work · {count}",
+    "now": "now",
+    "ndaShort": "NDA",
+    "archive": "All projects",
+    "selected": "Selected projects",
+    "inspect": "Explore the project",
+    "mapLabel": "Choose a project"
+  },
+  "approach": {
+    "index": "02",
+    "label": "Approach",
+    "title": "How I work",
+    "intro": "My approach is easier to explain through actual work: the task, the solution I chose, and the reasons behind it.",
+    "mirror": "Type sort · mirrored",
+    "print": "Impression · 1:1"
+  },
+  "contacts": {
+    "index": "04",
+    "label": "Contacts",
+    "title": "Say hello",
+    "lead": "Looking for a frontend developer? Tell me about your team and the work. I’m interested in tasks that take some figuring out.",
+    "email": "Send an email",
+    "resume": "Résumé",
+    "colophon": "Built with Next.js and Payload · set in Science Gothic"
+  },
+  "profile": {
+    "index": "02",
+    "experienceIndex": "03",
+    "label": "About me",
+    "title": "Daniil Andreev",
+    "intro": "I’m a frontend developer based in Moscow. I worked at New Narrative from July 2022 to October 2026.",
+    "body": "I was one of two frontend developers at the studio. I helped the team choose technologies and design the architecture. When needed, I also worked on Node.js backends and deployed projects to VPS servers.",
+    "focusLabel": "What interests me",
+    "focusText": "I especially enjoy complex frontend problems where the solution still needs to be found.",
+    "reachLabel": "Education",
+    "reachText": "Kazan Federal University. Bachelor’s degree in Computer Science and Computer Engineering.",
+    "teamLabel": "Working with the team",
+    "teamText": "I worked through layouts and user flows with designers, and agreed API contracts with backend developers.",
+    "resume": "View résumé",
+    "experienceLabel": "Experience",
+    "experienceIntro": "We used branches, pull requests, and code review. Before each release, the client checked the project on a staging domain; then we shipped to production."
+  },
+  "project": {
+    "back": "Back to projects",
+    "overview": "About the project",
+    "inside": "How it works",
+    "flow": "Interface flow",
+    "contribution": "My contribution",
+    "challenge": "The task",
+    "decision": "The solution",
+    "outcome": "The result",
+    "gallery": "Project screens",
+    "next": "Next project",
+    "all": "All projects",
+    "viewCase": "View case study",
+    "product": "Interface",
+    "engineering": "Engineering",
+    "switchLabel": "Project view",
+    "emptyVisual": "Project details",
+    "related": "More projects",
+    "howItWorks": "How it works"
+  },
+  "engineering": {
+    "kicker": "Inside the implementation",
+    "hint": "Select a diagram node",
+    "select": "Project implementation steps",
+    "edgeCase": "Edge case",
+    "verified": "Based on the project source"
+  },
+  "sculpture": {
+    "label": "01 / Type in three dimensions",
+    "description": "The ZeroFour mark in three dimensions: body, accent layer and backing",
+    "open": "Inspect the type",
+    "close": "Reassemble",
+    "hint": "Move the pointer to turn the model.",
+    "layers": "Body · accent layer · backing"
+  },
+  "assembly": {
+    "open": "Inspect interface",
+    "close": "Reassemble",
+    "type": "Variable typography",
+    "layout": "Responsive grid",
+    "image": "Image · AVIF / WebP"
+  }
+}
