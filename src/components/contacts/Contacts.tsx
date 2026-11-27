@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import { asMedia, type SiteContent } from '@/lib/content';
 import { Mark } from '@/components/brand/Mark';
 import { SetType } from '@/components/motion/SetType';
@@ -7,6 +7,7 @@ import styles from './Contacts.module.css';
 export async function Contacts({ site }: { site: SiteContent }) {
   const t = await getTranslations('contacts');
   const resume = asMedia(site.resume);
+  const locale = await getLocale();
   const links = [
     site.telegram ? { label: 'Telegram', value: `@${site.telegram}`, href: `https://t.me/${site.telegram}` } : null,
     site.github ? { label: 'GitHub', value: site.github.replace(/^https?:\/\/(www\.)?/, ''), href: site.github } : null,
@@ -52,9 +53,9 @@ export async function Contacts({ site }: { site: SiteContent }) {
             </a>
           </li>
         ))}
-        {resume ? (
+        {resume?.mimeType === 'application/pdf' ? (
           <li>
-            <a className={styles.link} href={resume.url!} download>
+            <a className={styles.link} href={`/${locale}/resume`} download>
               <span className={styles.linkLabel}>{t('resume')}</span>
               <span className={styles.linkValue}>PDF</span>
               <span aria-hidden="true">↓</span>

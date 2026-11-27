@@ -6,6 +6,7 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 const blobStoreId = process.env.BLOB_READ_WRITE_TOKEN?.match(/^vercel_blob_rw_([a-z\d]+)_/i)?.[1]?.toLowerCase();
 
 const nextConfig: NextConfig = {
+  experimental: { globalNotFound: true },
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: blobStoreId ? [{ protocol: 'https', hostname: `${blobStoreId}.public.blob.vercel-storage.com`, pathname: '/**' }] : [],

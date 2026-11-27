@@ -89,11 +89,13 @@ export function WorkGallery({ projects }: { projects: Project[] }) {
         ))}
       </ol>
       <div id={`${id}-preview`} className={styles.preview} data-dossier-ready={ready || undefined} aria-labelledby={`${id}-title`}>
-        <div ref={host} id={`${id}-object`} className={styles.visual} role="img" aria-label={t('preview', { title: active.title })}>
-          <div className={styles.fallback}>
-            {cover ? <Image key={cover.id} src={cover.sizes?.card?.url || cover.url!} width={cover.sizes?.card?.width ?? cover.width ?? 1280} height={cover.sizes?.card?.height ?? cover.height ?? 800} sizes="(min-width: 80rem) 55vw, (min-width: 48rem) 60vw, 100vw" alt="" loading="eager" className={styles.cover} /> : <div className={styles.typeCover}><span>{content.number} / {active.client}</span><strong>{active.title}</strong><p>{active.role}</p></div>}
+        <Link href={`/work/${active.slug}`} className={styles.visualLink} aria-label={t('view', { title: active.title })}>
+          <div ref={host} id={`${id}-object`} className={styles.visual} role="img" aria-label={t('preview', { title: active.title })}>
+            <div className={styles.fallback}>
+              {cover ? <Image key={cover.id} src={cover.sizes?.card?.url || cover.url!} width={cover.sizes?.card?.width ?? cover.width ?? 1280} height={cover.sizes?.card?.height ?? cover.height ?? 800} sizes="(min-width: 80rem) 55vw, (min-width: 48rem) 60vw, 100vw" alt="" loading="eager" className={styles.cover} /> : <div className={styles.typeCover}><span>{content.number} / {active.client}</span><strong>{active.title}</strong><p>{active.role}</p></div>}
+            </div>
           </div>
-        </div>
+        </Link>
         <div className={styles.controls}>
           <span>{t('counter', { current: content.number, total: String(projects.length).padStart(2, '0') })}</span>
           <button type="button" disabled={!ready} aria-expanded={open} aria-controls={`${id}-object`} onClick={() => {

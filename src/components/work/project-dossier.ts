@@ -65,6 +65,16 @@ export function mountDossier(host: HTMLDivElement, initial: DossierContent, onRe
   spine.position.set(-2.2, 0, 0);
   group.add(spine);
 
+  const corners: { mesh: THREE.Mesh; local: THREE.Vector3; world: THREE.Vector3 }[] = [];
+  group.traverse(object => {
+    if (!(object instanceof THREE.Mesh)) return;
+    object.geometry.computeBoundingBox();
+    const bounds = object.geometry.boundingBox!;
+    for (const x of [bounds.min.x, bounds.max.x]) for (const y of [bounds.min.y, bounds.max.y]) for (const z of [bounds.min.z, bounds.max.z]) {
+      corners.push({ mesh: object, local: new THREE.Vector3(x, y, z), world: new THREE.Vector3() });
+    }
+  });
+
   let open = false, progress = 0, aimX = 0, aimY = 0, lookX = 0, lookY = 0;
   let raf = 0, last = 0, visible = true, disposed = false, ready = false, revision = 0;
   let frontTexture: THREE.CanvasTexture | null = null;
@@ -159,10 +169,35 @@ export function mountDossier(host: HTMLDivElement, initial: DossierContent, onRe
     progress += ((open ? 1 : 0) - progress) * k;
     lookX += (aimX - lookX) * k; lookY += (aimY - lookY) * k;
     hinge.rotation.y = -progress * 1.95;
-    group.position.x = progress;
     group.rotation.set(-.16 + lookY * .16, -.2 + lookX * .25, .035);
-    const mobile = window.innerWidth < 768;
-    camera.position.z = (8.4 + progress * 6.4) * Math.max(mobile ? .8 : 1, 1.05 / camera.aspect) + (mobile ? progress : 0);
+    group.updateMatrixWorld(true);
+    let nearest = -Infinity;
+    for (const corner of corners) {
+      corner.world.copy(corner.local).applyMatrix4(corner.mesh.matrixWorld);
+      nearest = Math.max(nearest, corner.world.z);
+    }
+    // Fit the real hinged geometry, including its depth, instead of shrinking the open book.
+    const slopeY = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * .92;
+    const slopeX = slopeY * camera.aspect;
+    let low = nearest + .2, high = low + 40;
+    let centerX = 0, centerY = 0;
+    for (let step = 0; step < 15; step++) {
+      const distance = (low + high) / 2;
+      let left = -Infinity, right = Infinity, bottom = -Infinity, top = Infinity;
+      for (const { world } of corners) {
+        const depth = distance - world.z;
+        left = Math.max(left, world.x - depth * slopeX);
+        right = Math.min(right, world.x + depth * slopeX);
+        bottom = Math.max(bottom, world.y - depth * slopeY);
+        top = Math.min(top, world.y + depth * slopeY);
+      }
+      if (left <= right && bottom <= top) {
+        high = distance;
+        centerX = (left + right) / 2;
+        centerY = (bottom + top) / 2;
+      } else low = distance;
+    }
+    camera.position.set(centerX, centerY, high);
     renderer.render(scene, camera);
     if (!ready) { ready = true; onReady(); }
     const moving = Math.abs((open ? 1 : 0) - progress) + Math.abs(aimX - lookX) + Math.abs(aimY - lookY) > .001;

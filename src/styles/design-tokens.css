@@ -32,7 +32,7 @@
   --line-stage: var(--line-w) solid var(--color-stage-line);
   --line-control-stage: var(--line-w) solid var(--color-control-stage-line);
   --focus-ring-on-stage: 2px solid var(--color-stage-text);
-  --size-portrait-name: clamp(3.25rem, 15vw, 15rem);
+  --size-portrait-name: clamp(3.25rem, min(15vw, 18svh), 15rem);
   --portrait-name-width: 62;
   --portrait-name-weight: 540;
   --portrait-name-leading: .9;
@@ -40,6 +40,7 @@
   --size-portrait-role: clamp(.875rem, 1.3vw, 1.125rem);
   --portrait-screen-min: 43rem;
   --portrait-crop: 50% 0%;
+  --portrait-fade-start: 76%;
 
   /* ---- Шрифты (переменные задаёт next/font в fonts.ts) ------------------ */
   --font-display: var(--ff-science-gothic), 'Arial Narrow', sans-serif;

@@ -118,6 +118,8 @@
     "verified": "Based on the project source"
   },
   "portrait": {
+    "resumeShort": "Résumé",
+    "resume": "Download résumé",
     "portfolio": "Daniil Andreev · Portfolio",
     "scroll": "Explore the work ↓",
     "changeFrame": "Another frame"
@@ -133,6 +135,14 @@
     "inside": "My contribution",
     "counter": "{current} / {total}"
   },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The address may have changed. You can find my work and contact details on the homepage.",
+    "navigation": "Continue browsing",
+    "home": "Go home",
+    "work": "See the work",
+    "contacts": "Get in touch"
+  },
   "sculpture": {
     "label": "01 / Type in three dimensions",
     "description": "The ZeroFour mark in three dimensions: body, accent layer and backing",
@@ -140,6 +150,31 @@
     "close": "Reassemble",
     "hint": "Move the pointer to turn the model.",
     "layers": "Body · accent layer · backing"
+  },
+  "faq": {
+    "label": "FAQ",
+    "title": "Questions and answers",
+    "role": {
+      "question": "What do you do?",
+      "answer": "I build interfaces with React and Next.js. I especially enjoy complex frontend problems where the solution still needs to be found."
+    },
+    "experience": {
+      "question": "What experience do you have?",
+      "answer": "I worked at New Narrative from July 2022 to October 2026. I was one of two frontend developers at the studio, helping the team choose technologies and design the architecture."
+    },
+    "stack": {
+      "question": "What technologies do you work with?",
+      "answer": "My main stack is React, TypeScript and Next.js. When needed, I also work on Node.js backends and deploy projects to VPS servers."
+    },
+    "materials": {
+      "question": "Where can I see the projects and source code?",
+      "answer": "Choose a project in the Work section and open its case study. Available materials and links are collected there. For projects under NDA, I only share information approved for publication."
+    }
+  },
+  "recommendations": {
+    "label": "Feedback",
+    "title": "Recommendations",
+    "source": "Source"
   },
   "assembly": {
     "open": "Inspect interface",

@@ -27,6 +27,8 @@ export type SiteContent = {
   statusText?: string | null;
   facts?: Fact[] | null;
   principles?: { id?: string; title: string; text: string; proof?: string | null }[] | null;
+  faq?: { id?: string; question: string; answer: string }[] | null;
+  recommendations?: { id?: string; author: string; role?: string | null; quote: string; source?: string | null }[] | null;
   profile?: {
     title?: string | null;
     intro?: string | null;

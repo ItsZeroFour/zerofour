@@ -9,6 +9,8 @@ import { asImageMedia, getProject, getProjects, getSite } from '@/lib/content';
 import { ProjectLens } from '@/components/work/ProjectLens';
 import { projectEngineering } from '@/lib/project-engineering';
 import { Contacts } from '@/components/contacts/Contacts';
+import { PageTransition } from '@/components/motion/PageTransition';
+import { metadataFor, projectSchema, safeJsonLd } from '@/lib/seo';
 import styles from './page.module.css';
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
@@ -16,14 +18,12 @@ type Props = { params: Promise<{ locale: string; slug: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   if (!hasLocale(routing.locales, locale)) return {};
-  const p = await getProject(locale, slug);
-  if (!p) return {};
-  const image = asImageMedia(p.cover);
-  return {
-    title: `${p.title} · ZeroFour`, description: p.summary,
-    alternates: { canonical: `/${locale}/work/${slug}`, languages: { ru: `/ru/work/${slug}`, en: `/en/work/${slug}` } },
-    openGraph: { title: p.title, description: p.summary, ...(image ? { images: [{ url: image.url! }] } : {}) },
-  };
+  const [p, site] = await Promise.all([getProject(locale, slug), getSite(locale)]);
+  if (!p) {
+    const t = await getTranslations({ locale, namespace: 'notFound' });
+    return { title: `${t('title')} · ZeroFour`, robots: { index: false, follow: true }, alternates: null, openGraph: null, twitter: null };
+  }
+  return metadataFor(site, locale, p);
 }
 
 export default async function ProjectPage({ params }: Props) {
@@ -37,7 +37,8 @@ export default async function ProjectPage({ params }: Props) {
   const story = [{ label: t('challenge'), text: p.challenge }, { label: t('decision'), text: p.decision }, { label: t('outcome'), text: p.outcome }].filter((row) => row.text);
   const gallery = (p.gallery ?? []).flatMap((row) => { const media = asImageMedia(row.image); return media ? [{ ...row, media }] : []; });
   return (
-    <>
+    <PageTransition>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(projectSchema(site, p, locale)) }} />
       <article className={styles.case}>
         <Link href="/#work" className={styles.back}>↙ {t('back')}</Link>
         <header className={styles.head}>
@@ -62,6 +63,6 @@ export default async function ProjectPage({ params }: Props) {
         {next ? <Link href={`/work/${next.slug}`} className={styles.next}><span>{t('next')}</span><strong>{next.title}</strong><span aria-hidden="true">↗</span></Link> : <Link href="/#work" className={styles.back}>{t('all')} ↗</Link>}
       </article>
       <Contacts site={site} />
-    </>
+    </PageTransition>
   );
 }

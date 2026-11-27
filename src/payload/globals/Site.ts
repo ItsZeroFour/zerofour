@@ -143,6 +143,36 @@ export const Site: GlobalConfig = {
           }],
         },
         {
+          label: { ru: 'Вопросы и ответы', en: 'FAQ' },
+          fields: [{
+            name: 'faq',
+            type: 'array',
+            localized: true,
+            label: { ru: 'Вопросы и ответы', en: 'Questions and answers' },
+            admin: { description: { ru: 'Если список пуст, сайт показывает четыре ответа на основе подтверждённого профиля. Заполненный список заменяет их.', en: 'When empty, the site shows four answers based on the verified profile. Adding entries replaces those answers.' } },
+            fields: [
+              { name: 'question', type: 'text', required: true, label: { ru: 'Вопрос', en: 'Question' } },
+              { name: 'answer', type: 'textarea', required: true, label: { ru: 'Ответ', en: 'Answer' } },
+            ],
+          }],
+        },
+        {
+          label: { ru: 'Рекомендации', en: 'Recommendations' },
+          fields: [{
+            name: 'recommendations',
+            type: 'array',
+            localized: true,
+            label: { ru: 'Рекомендации', en: 'Recommendations' },
+            admin: { description: { ru: 'Добавляйте только настоящие отзывы с разрешения автора. Пустой раздел не отображается на сайте.', en: 'Add genuine recommendations with the author’s permission. An empty section is not shown on the site.' } },
+            fields: [
+              { name: 'author', type: 'text', required: true, label: { ru: 'Автор', en: 'Author' } },
+              { name: 'role', type: 'text', label: { ru: 'Должность / компания', en: 'Role / company' } },
+              { name: 'quote', type: 'textarea', required: true, label: { ru: 'Текст рекомендации', en: 'Recommendation' } },
+              { name: 'source', type: 'text', label: { ru: 'Источник (необязательно)', en: 'Source (optional)' } },
+            ],
+          }],
+        },
+        {
           label: { ru: 'Контакты', en: 'Contacts' },
           fields: [
             {
@@ -166,6 +196,8 @@ export const Site: GlobalConfig = {
               type: 'upload',
               relationTo: 'media',
               localized: true,
+              filterOptions: { mimeType: { equals: 'application/pdf' } },
+              admin: { description: { ru: 'Выберите актуальное резюме в PDF. Этот файл используется для ссылки на резюме и его скачивания на сайте.', en: 'Choose the current résumé as a PDF. The site uses this file for the résumé link and download.' } },
             },
           ],
         },

@@ -1,0 +1,15 @@
+.section { position: relative; z-index: var(--z-content); padding: var(--space-3xl) var(--grid-margin); background: var(--color-paper); color: var(--color-ink); scroll-margin-top: var(--header-h); --focus-ring: var(--focus-ring-on-paper); }
+.inner { max-width: var(--grid-max); margin-inline: auto; }
+.head { display: grid; gap: var(--space-m); margin-bottom: var(--space-xl); }
+.kicker { color: var(--color-mute); font: var(--step--2)/var(--leading-mono) var(--font-mono); letter-spacing: var(--tracking-mono); text-transform: uppercase; }
+.head h2 { font: var(--display-wght-author) var(--step-4)/var(--leading-tight) var(--font-display); font-variation-settings: 'wdth' var(--display-wdth-author); letter-spacing: var(--tracking-display); overflow-wrap: anywhere; }
+.list { margin: 0; padding: 0; list-style: none; }
+.list > li { border-top: var(--line-ink); padding-block: var(--space-xl); }
+.list > li:last-child { border-bottom: var(--line-ink); }
+.recommendation { display: grid; gap: var(--space-l); margin: 0; }
+.recommendation blockquote { margin: 0; max-width: var(--measure-wide); font-size: var(--step-2); line-height: var(--leading-text); white-space: pre-line; overflow-wrap: anywhere; }
+.recommendation figcaption { display: grid; align-content: start; gap: var(--space-2xs); font-size: var(--step--1); overflow-wrap: anywhere; }
+.recommendation strong { font-weight: 500; }
+.recommendation figcaption > span, .recommendation cite { color: var(--color-mute); }
+.recommendation cite { font: var(--step--2)/var(--leading-mono) var(--font-mono); }
+@media (min-width: 48rem) { .recommendation { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: var(--space-2xl); } }

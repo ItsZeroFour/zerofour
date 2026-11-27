@@ -10,9 +10,9 @@ import styles from './CommandPalette.module.css';
  * Навигация через ⌘K / Ctrl+K. Кнопка «Меню» в шапке открывает её же —
  * на телефоне это обычное меню.
  */
-type Props = { label: string; telegram?: string | null; email?: string | null };
+type Props = { label: string; telegram?: string | null; email?: string | null; projectCount: number };
 
-export function CommandPalette({ label, telegram, email }: Props) {
+export function CommandPalette({ label, telegram, email, projectCount }: Props) {
   const t = useTranslations('palette');
   const locale = useLocale();
   const router = useRouter();
@@ -118,6 +118,7 @@ export function CommandPalette({ label, telegram, email }: Props) {
             <Command.Item className={styles.item} keywords={['work', 'работы', 'проекты', 'portfolio']} onSelect={() => run(goTo('#work'))}>
               <span className={styles.index}>01</span>
               {t('work')}
+              <span className={styles.meta}>{String(projectCount).padStart(2, '0')}</span>
             </Command.Item>
             <Command.Item className={styles.item} keywords={['about', 'обо мне', 'approach', 'подход', 'how']} onSelect={() => run(goTo('#about'))}>
               <span className={styles.index}>02</span>

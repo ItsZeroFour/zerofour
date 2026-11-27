@@ -1,8 +1,6 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './SetType.module.css';
 
 const rand = (i: number, salt: number) => {
@@ -19,11 +17,24 @@ export function SetType({ text, className }: { text: string; className?: string 
 
   useEffect(() => {
     const el = ref.current;
-    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    gsap.registerPlugin(ScrollTrigger);
-    const sorts = el.querySelectorAll<HTMLElement>('[data-sort]');
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
+    if (!el) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let live = true;
+    let near = false;
+    let started = false;
+    let dispose: (() => void) | undefined;
+    const start = async () => {
+      if (!near || reduced.matches || started) return;
+      started = true;
+      try {
+        const [{ gsap }, { ScrollTrigger }] = await Promise.all([import('gsap'), import('gsap/ScrollTrigger')]);
+        if (!live) return;
+        gsap.registerPlugin(ScrollTrigger);
+        const media = gsap.matchMedia();
+        media.add('(prefers-reduced-motion: no-preference)', () => {
+          if (el.getBoundingClientRect().bottom < 0) return;
+          const sorts = el.querySelectorAll<HTMLElement>('[data-sort]');
+          const ctx = gsap.context(() => gsap.fromTo(
         sorts,
         {
           xPercent: (i) => (rand(i, 1) - 0.5) * 220,
@@ -40,10 +51,17 @@ export function SetType({ text, className }: { text: string; className?: string 
           stagger: { each: 0.04, from: 'random' },
           scrollTrigger: { trigger: el, start: 'top 95%', end: 'top 55%', scrub: 0.8 },
         },
-      );
-    }, el);
-    return () => ctx.revert();
-  }, []);
+          ), el);
+          return () => ctx.revert();
+        });
+        dispose = () => media.revert();
+      } catch { /* Contact text is visible without animation. */ }
+    };
+    const observer = new IntersectionObserver(([entry]) => { near = entry.isIntersecting; if (near) void start(); }, { rootMargin: '200px' });
+    observer.observe(el);
+    reduced.addEventListener('change', start);
+    return () => { live = false; observer.disconnect(); reduced.removeEventListener('change', start); dispose?.(); };
+  }, [text]);
 
   return (
     <span ref={ref} className={[styles.set, className].filter(Boolean).join(' ')}>

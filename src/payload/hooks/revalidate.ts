@@ -8,6 +8,7 @@ import type { CollectionAfterChangeHook, CollectionAfterDeleteHook, GlobalAfterC
 function revalidateAll() {
   try {
     revalidatePath('/(site)/[locale]', 'layout');
+    revalidatePath('/sitemap.xml');
   } catch {
     // вне запроса Next (например, в скрипте seed) ревалидация не нужна
   }

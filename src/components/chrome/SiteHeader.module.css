@@ -1,4 +1,5 @@
 .header {
+  view-transition-name: site-header;
   --color-paper: var(--color-stage);
   --color-ink: var(--color-stage-text);
   --color-mute: var(--color-stage-mute);
@@ -25,6 +26,11 @@
   font-size: var(--step--2);
   letter-spacing: normal;
 }
+.count { margin-left: var(--space-2xs); color: var(--color-stage-mute); font-size: var(--step--2); }
+.telegram { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-xs); min-width: var(--tap-min); min-height: var(--tap-min); }
+.telegram span { display: none; }
+.telegram:hover { color: var(--color-signal); }
+@media (min-width: 80rem) { .telegram span { display: inline; } }
 
 .brand {
   min-width: var(--tap-min);

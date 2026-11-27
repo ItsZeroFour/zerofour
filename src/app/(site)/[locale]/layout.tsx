@@ -5,9 +5,10 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { scienceGothic, golos, martian } from '@/app/fonts';
 import { SiteHeader } from '@/components/chrome/SiteHeader';
-import { SmoothScroll } from '@/components/motion/SmoothScroll';
 import { RevealObserver } from '@/components/motion/RevealObserver';
-import { asMedia, getSite } from '@/lib/content';
+import { Metrika } from '@/components/analytics/Metrika';
+import { getProjects, getSite } from '@/lib/content';
+import { metadataFor } from '@/lib/seo';
 import '../globals.css';
 
 type Props = {
@@ -23,13 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) return {};
   const site = await getSite(locale);
-  const og = asMedia(site.ogImage);
-  return {
-    title: site.seoTitle || `${site.name} — ${site.role}`,
-    description: site.seoDescription || site.lead,
-    alternates: { languages: { ru: '/ru', en: '/en' } },
-    openGraph: og ? { images: [{ url: og.sizes?.og?.url || og.url! }] } : undefined,
-  };
+  return metadataFor(site, locale);
 }
 
 export const viewport: Viewport = {
@@ -41,10 +36,11 @@ export default async function LocaleLayout({ children, params }: Props) {
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'a11y' });
-  const site = await getSite(locale);
+  const [site, projects] = await Promise.all([getSite(locale), getProjects(locale)]);
 
   return (
     <html
+      data-scroll-behavior="smooth"
       lang={locale}
       className={`${scienceGothic.variable} ${golos.variable} ${martian.variable}`}
     >
@@ -53,10 +49,10 @@ export default async function LocaleLayout({ children, params }: Props) {
           {t('skip')}
         </a>
         <NextIntlClientProvider>
-          <SiteHeader site={site} />
+          <SiteHeader site={site} projectCount={projects.length} />
           <main id="main">{children}</main>
-          <SmoothScroll />
           <RevealObserver />
+          <Metrika />
         </NextIntlClientProvider>
       </body>
     </html>

@@ -3,13 +3,15 @@
 .kicker { grid-column: 1 / -1; font: var(--step--2)/var(--leading-mono) var(--font-mono); letter-spacing: var(--tracking-mono); color: var(--color-mute); text-transform: uppercase; }
 .title { grid-column: 1 / -1; max-width: 20ch; font: 500 var(--size-profile-title)/var(--leading-tight) var(--font-display); font-variation-settings: 'wdth' var(--display-wdth-name); letter-spacing: var(--tracking-display); overflow-wrap: anywhere; }
 .portrait { grid-column: 1 / -1; max-width: var(--portrait-max); }
-.photo { width: 100%; height: auto; aspect-ratio: 4 / 5; max-height: var(--portrait-max); object-fit: contain; object-position: bottom; background: var(--color-paper-deep); border: var(--line-strong); }
+.photo { width: 100%; height: auto; aspect-ratio: 4 / 5; max-height: var(--portrait-max); object-fit: cover; object-position: top; background: var(--color-stage); }
 .portrait figcaption { padding-top: var(--space-xs); border-top: var(--line-ink); font: var(--step--2)/var(--leading-mono) var(--font-mono); color: var(--color-mute); }
 .story { grid-column: 1 / -1; display: grid; gap: var(--space-l); max-width: var(--measure-text); }
 .story > * { min-width: 0; overflow-wrap: anywhere; }
 .intro { font-size: var(--step-2); line-height: var(--leading-tight); }
 .story > p:not(.intro) { color: var(--color-ink-soft); white-space: pre-line; }
-.note { display: grid; gap: var(--space-s); padding-top: var(--space-s); border-top: var(--line-strong); }
+.note { display: grid; gap: var(--space-s); padding-top: var(--space-m); border-top: var(--line-strong); }
+.note:first-of-type { border-top-color: var(--color-accent-text); }
+.note:first-of-type p { font-size: var(--step-1); line-height: var(--leading-text); }
 .note h3, .team h2 { font: var(--step--2)/var(--leading-mono) var(--font-mono); color: var(--color-mute); text-transform: uppercase; }
 .note p { color: var(--color-ink-soft); }
 .experience { border-top: var(--line-ink); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-xl); }
@@ -29,15 +31,16 @@
 @media (min-width: 48rem) {
   .roles li { grid-template-columns: auto minmax(0, 1fr); gap: var(--space-m); }
   .about { grid-template-columns: repeat(8, minmax(0, 1fr)); }
-  .portrait { grid-column: 1 / 4; align-self: start; }
-  .story { grid-column: 5 / -1; }
+  .title { grid-column: 5 / -1; grid-row: 2; align-self: end; }
+  .portrait { grid-column: 1 / 4; grid-row: 2 / span 2; align-self: start; }
+  .story { grid-column: 5 / -1; grid-row: 3; }
   .experience { grid-template-columns: 1fr 1.3fr; gap: var(--space-2xl); }
   .team { grid-column: 1 / -1; grid-template-columns: 1fr 1.3fr; }
   .team p, .resume { grid-column: 2; }
 }
 @media (min-width: 80rem) {
   .about { grid-template-columns: repeat(12, minmax(0, 1fr)); }
-  .title { grid-column: 1 / 11; }
+  .title { grid-column: 7 / -1; max-width: 12ch; }
   .portrait { grid-column: 1 / 6; }
-  .story { grid-column: 7 / 12; padding-top: var(--space-xl); }
+  .story { grid-column: 7 / -1; padding-top: var(--space-s); }
 }
