@@ -1,51 +1,37 @@
 'use client';
 
 import { useEffect } from 'react';
-import Lenis from 'lenis';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import type Lenis from 'lenis';
 
-gsap.registerPlugin(ScrollTrigger);
-
-/**
- * Плавный скролл (Lenis) на одном тике с GSAP ScrollTrigger.
- * При prefers-reduced-motion — обычный нативный скролл.
- */
 export function SmoothScroll() {
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let stop: (() => void) | undefined;
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+    let lenis: Lenis | undefined;
+    let revision = 0;
 
-    const setup = () => {
-      stop?.();
-      stop = undefined;
-      if (reduced.matches) return;
-
-      const lenis = new Lenis({
-        duration: 1.15,
-        easing: (t) => 1 - Math.pow(1 - t, 4), // медленно и плавно, без отскока
-        smoothWheel: true,
-        anchors: { offset: 0 },
-      });
+    const setup = async () => {
+      const current = ++revision;
+      lenis?.destroy();
+      lenis = undefined;
+      delete window.__lenis;
+      if (reduced.matches || !finePointer.matches) return;
+      const { default: Lenis } = await import('lenis');
+      if (current !== revision) return;
+      lenis = new Lenis({ duration: 0.85, smoothWheel: true, syncTouch: false, autoRaf: true, anchors: true });
       window.__lenis = lenis;
       if (document.documentElement.hasAttribute('data-menu-open')) lenis.stop();
-
-      lenis.on('scroll', ScrollTrigger.update);
-      const tick = (time: number) => lenis.raf(time * 1000);
-      gsap.ticker.add(tick);
-      gsap.ticker.lagSmoothing(0);
-      stop = () => {
-        gsap.ticker.remove(tick);
-        lenis.destroy();
-        delete window.__lenis;
-      };
     };
 
-    setup();
+    void setup();
     reduced.addEventListener('change', setup);
+    finePointer.addEventListener('change', setup);
     return () => {
+      revision++;
       reduced.removeEventListener('change', setup);
-      stop?.();
+      finePointer.removeEventListener('change', setup);
+      lenis?.destroy();
+      delete window.__lenis;
     };
   }, []);
 

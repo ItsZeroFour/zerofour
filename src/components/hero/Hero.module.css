@@ -7,8 +7,9 @@
 .intro { position: relative; grid-row: 3; align-self: end; z-index: 4; margin-inline: var(--grid-margin); padding-top: var(--space-s); display: grid; justify-items: start; gap: var(--space-s); }
 .intro { pointer-events: none; }
 .intro > * { pointer-events: auto; }
+.actions { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-s) var(--space-m); }
 .role { font-size: var(--size-portrait-role); }
-.lead { display: none; max-width: var(--measure-text); color: var(--color-stage-mute); font-size: var(--step--1); }
+.lead { display: none; max-width: var(--measure-wide); color: var(--color-stage-mute); font-size: var(--step--1); }
 .cta { display: inline-flex; align-items: center; justify-content: space-between; gap: var(--space-s); min-height: var(--tap-min); padding: var(--space-xs) var(--space-s); background: var(--color-stage-text); color: var(--color-stage); font-size: var(--step--1); transition: background var(--dur-fast) var(--ease-out); }
 .cta > span:last-child { font-size: var(--step-2); line-height: 1; }
 .cta:hover { background: var(--color-signal); }
@@ -26,13 +27,13 @@
   .resumeCompact { display: none; }
   .resume { display: inline-flex; }
   .name { padding-top: var(--space-l); }
-  .intro { width: 31%; align-self: start; padding-top: var(--space-l); }
+  .intro { width: min(56%, var(--measure-wide)); align-self: start; padding-top: var(--space-l); }
   .lead { display: block; }
   .role { color: var(--color-stage-text); }
   .bottom { padding-bottom: var(--space-m); }
 }
 @media (min-width: 80rem) {
-  .intro { width: 31%; }
+  .intro { width: min(56%, var(--measure-wide)); }
   .lead { font-size: var(--step--1); }
 }
 @media (prefers-reduced-motion: reduce) { .name > span { animation: none; } }

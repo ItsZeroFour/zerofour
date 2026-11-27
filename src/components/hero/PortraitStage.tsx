@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import type { PortraitScene } from './portrait-scene';
 import styles from './PortraitStage.module.css';
 
-export function PortraitStage({ src, alternate, name, children }: { src: string; alternate: string; name: string; children: ReactNode }) {
+export function PortraitStage({ src, alternate, name, children }: { src: string; alternate: string; name: string; children?: ReactNode }) {
   const t = useTranslations('portrait');
   const root = useRef<HTMLDivElement>(null);
   const scene = useRef<PortraitScene | null>(null);

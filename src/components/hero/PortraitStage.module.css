@@ -7,7 +7,7 @@
 .stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; visibility: hidden; }
 .figure[data-portrait-ready] .image { visibility: hidden; }
 .figure[data-portrait-ready] .stage canvas { visibility: visible; }
-.controls { position: relative; grid-row: 4; z-index: 4; margin: var(--space-s) var(--grid-margin) var(--space-m); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-s); pointer-events: auto; }
+.controls { position: relative; grid-row: 4; z-index: 4; margin: var(--space-s) var(--grid-margin) var(--space-m); display: flex; justify-content: flex-end; align-items: center; flex-wrap: wrap; gap: var(--space-s); pointer-events: auto; }
 .controls button { display: flex; align-items: center; gap: var(--space-xs); min-height: var(--tap-min); padding: var(--space-2xs) var(--space-xs); border-bottom: var(--line-stage); background: var(--color-stage); color: var(--color-stage-text); font-size: var(--step--2); text-align: left; transition: border-color var(--dur-fast) var(--ease-out); }
 .controls button:hover { border-color: var(--color-signal); }
 .controls button:active { color: var(--color-stage-mute); }

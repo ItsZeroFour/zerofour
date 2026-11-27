@@ -6,6 +6,7 @@ import { routing } from '@/i18n/routing';
 import { scienceGothic, golos, martian } from '@/app/fonts';
 import { SiteHeader } from '@/components/chrome/SiteHeader';
 import { RevealObserver } from '@/components/motion/RevealObserver';
+import { SmoothScroll } from '@/components/motion/SmoothScroll';
 import { Metrika } from '@/components/analytics/Metrika';
 import { getProjects, getSite } from '@/lib/content';
 import { metadataFor } from '@/lib/seo';
@@ -52,6 +53,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           <SiteHeader site={site} projectCount={projects.length} />
           <main id="main">{children}</main>
           <RevealObserver />
+          <SmoothScroll />
           <Metrika />
         </NextIntlClientProvider>
       </body>
