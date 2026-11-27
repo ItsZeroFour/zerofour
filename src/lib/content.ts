@@ -22,7 +22,7 @@ export const getProjects = cache(async (locale: Locale): Promise<Project[]> => {
     locale,
     depth: 1,
     sort: 'order',
-    limit: 50,
+    limit: 0,
     draft: false,
     overrideAccess: false,
     where: { _status: { equals: 'published' } },

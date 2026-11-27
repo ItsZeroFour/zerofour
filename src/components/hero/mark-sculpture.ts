@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { cssMilliseconds } from '@/components/motion/css-time';
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader.js';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 import { MARK_PATH } from '@/components/brand/mark-path';
@@ -10,7 +11,7 @@ export function mountSculpture(host: HTMLDivElement, onReady: () => void, onUnav
   const color = (name: string) => css.getPropertyValue(name).trim();
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const hover = matchMedia('(hover: hover) and (pointer: fine)');
-  let settleTime = parseFloat(css.getPropertyValue('--dur-slow')) / 6;
+  let settleTime = cssMilliseconds(css.getPropertyValue('--dur-slow')) / 6;
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'low-power' });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
   renderer.setClearColor(0, 0);
@@ -86,7 +87,7 @@ export function mountSculpture(host: HTMLDivElement, onReady: () => void, onUnav
     wake();
   };
   const reset = () => { aimX = aimY = 0; if (reduced.matches) lookX = lookY = 0; wake(); };
-  const motionChanged = () => { settleTime = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--dur-slow')) / 6; reset(); };
+  const motionChanged = () => { settleTime = cssMilliseconds(getComputedStyle(document.documentElement).getPropertyValue('--dur-slow')) / 6; reset(); };
   const visibility = () => { if (document.hidden) pause(); else wake(); };
   const contextLost = (event: Event) => { event.preventDefault(); onUnavailable(); dispose(); };
   function dispose() {

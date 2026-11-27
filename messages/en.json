@@ -17,6 +17,7 @@
     "leadDefault": "I build interfaces with React and Next.js. I especially enjoy complex problems. I’ve worked on projects used by tens and hundreds of thousands of people."
   },
   "palette": {
+    "skills": "Verified skills",
     "title": "Command palette",
     "placeholder": "Where to? Type or pick…",
     "empty": "Nothing found. Try “work” or “telegram”.",
@@ -182,5 +183,16 @@
     "type": "Variable typography",
     "layout": "Responsive grid",
     "image": "Image · AVIF / WebP"
+  },
+  "verifiedSkills": {
+    "label": "Verified",
+    "title": "Skills with evidence",
+    "description": "Independent assessments of theoretical knowledge. Open any certificate to review the result.",
+    "issuer": "National IT Competency Assessment System · Ministry of Digital Development of Russia",
+    "advanced": "Advanced level",
+    "intermediate": "Intermediate level",
+    "basic": "Basic level",
+    "validUntil": "Valid until",
+    "open": "Open {skill} certificate — PDF, new tab"
   }
 }

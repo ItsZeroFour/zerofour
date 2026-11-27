@@ -32,7 +32,7 @@
   --line-stage: var(--line-w) solid var(--color-stage-line);
   --line-control-stage: var(--line-w) solid var(--color-control-stage-line);
   --focus-ring-on-stage: 2px solid var(--color-stage-text);
-  --size-portrait-name: clamp(3.25rem, min(15vw, 18svh), 15rem);
+  --size-portrait-name: clamp(3.25rem, min(16vw, 19svh), 16rem);
   --portrait-name-width: 62;
   --portrait-name-weight: 540;
   --portrait-name-leading: .9;

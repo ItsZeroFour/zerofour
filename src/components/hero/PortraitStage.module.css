@@ -15,6 +15,8 @@
 .counter { display: none; color: var(--color-stage-mute); }
 @media (min-width: 48rem) {
   .figure { inset: 0 -2% 0 37%; }
+  .controls { align-items: start; }
+  .controls button { align-self: end; }
   .counter { display: inline; }
   .controls button { font-size: var(--step--1); }
 }

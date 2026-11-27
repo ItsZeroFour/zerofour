@@ -124,6 +124,10 @@ export function CommandPalette({ label, telegram, email, projectCount }: Props) 
               <span className={styles.index}>02</span>
               {t('about')}
             </Command.Item>
+            <Command.Item className={styles.item} keywords={['skills', 'certificates', 'навыки', 'сертификаты']} onSelect={() => run(goTo('#skills'))}>
+              <span className={styles.index}>03</span>
+              {t('skills')}
+            </Command.Item>
             <Command.Item className={styles.item} keywords={['contacts', 'контакты', 'hire', 'написать']} onSelect={() => run(goTo('#contacts'))}>
               <span className={styles.index}>04</span>
               {t('contacts')}

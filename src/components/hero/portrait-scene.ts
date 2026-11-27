@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { cssMilliseconds } from '@/components/motion/css-time';
 
 export type PortraitScene = { setFrame(second: boolean): void; dispose(): void };
 
@@ -61,7 +62,7 @@ export async function mountPortrait(host: HTMLDivElement, urls: string[], onRead
   renderer.domElement.setAttribute('aria-hidden','true');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const pointer = matchMedia('(hover: hover) and (pointer: fine)');
-  const duration = () => Math.max(1,parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--dur-slow'))/6);
+  const duration = () => Math.max(1,cssMilliseconds(getComputedStyle(document.documentElement).getPropertyValue('--dur-slow'))/6);
   let settle = duration();
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(45,1,.1,10);

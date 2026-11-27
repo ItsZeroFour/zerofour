@@ -54,8 +54,11 @@ skills-lock.json
 # ---- source materials (not shipped) ----
 /photos/
 *.pdf
+!/public/certificates/*.pdf
 
 # scratch
 /.work/
 
 .codegraph
+
+/certs

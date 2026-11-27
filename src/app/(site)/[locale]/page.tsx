@@ -6,6 +6,7 @@ import { getProjects, getSite } from '@/lib/content';
 import { Hero } from '@/components/hero/Hero';
 import { Work } from '@/components/work/Work';
 import { Profile } from '@/components/profile/Profile';
+import { VerifiedSkills } from '@/components/skills/VerifiedSkills';
 import { Contacts } from '@/components/contacts/Contacts';
 import { FAQ } from '@/components/faq/FAQ';
 import { Recommendations } from '@/components/recommendations/Recommendations';
@@ -26,6 +27,7 @@ export default async function HomePage({ params }: Props) {
       <Hero site={site} />
       <Work projects={projects} />
       <Profile site={site} />
+      <VerifiedSkills />
       <Recommendations site={site} />
       <FAQ site={site} />
       <Contacts site={site} />

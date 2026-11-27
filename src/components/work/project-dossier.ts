@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { cssMilliseconds } from '@/components/motion/css-time';
 import type { Fact } from '@/lib/content-types';
 
 export type DossierContent = { title: string; subtitle: string; summary: string; contribution: string; number: string; imageUrl?: string; metric?: Fact; insideLabel: string };
@@ -14,7 +15,7 @@ export function mountDossier(host: HTMLDivElement, initial: DossierContent, onRe
   const displayFont = css.getPropertyValue('--font-display').trim();
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const hover = matchMedia('(hover: hover) and (pointer: fine)');
-  let duration = parseFloat(css.getPropertyValue('--dur-slow')) / 6;
+  let duration = cssMilliseconds(css.getPropertyValue('--dur-slow')) / 6;
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'low-power' });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
   renderer.setClearColor(0, 0);
@@ -218,7 +219,7 @@ export function mountDossier(host: HTMLDivElement, initial: DossierContent, onRe
     aimX = (event.clientX - box.left) / box.width - .5; aimY = (event.clientY - box.top) / box.height - .5; wake();
   };
   const reset = () => { aimX = aimY = 0; if (reduced.matches) lookX = lookY = 0; wake(); };
-  const motion = () => { duration = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--dur-slow')) / 6; reset(); };
+  const motion = () => { duration = cssMilliseconds(getComputedStyle(document.documentElement).getPropertyValue('--dur-slow')) / 6; reset(); };
   const visibility = () => { if (document.hidden) pause(); else wake(); };
   const contextLost = (event: Event) => { event.preventDefault(); onUnavailable(); dispose(); };
   function dispose() {
