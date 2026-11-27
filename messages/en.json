@@ -117,6 +117,22 @@
     "edgeCase": "Edge case",
     "verified": "Based on the project source"
   },
+  "portrait": {
+    "portfolio": "Daniil Andreev · Portfolio",
+    "scroll": "Explore the work ↓",
+    "changeFrame": "Another frame"
+  },
+  "gallery": {
+    "choose": "Choose a project",
+    "list": "All published projects",
+    "preview": "Preview of {title}",
+    "view": "Open the {title} case study",
+    "read": "View case study",
+    "open": "Open spread",
+    "close": "Close spread",
+    "inside": "My contribution",
+    "counter": "{current} / {total}"
+  },
   "sculpture": {
     "label": "01 / Type in three dimensions",
     "description": "The ZeroFour mark in three dimensions: body, accent layer and backing",

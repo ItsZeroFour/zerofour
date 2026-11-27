@@ -23,6 +23,8 @@ export const getProjects = cache(async (locale: Locale): Promise<Project[]> => {
     depth: 1,
     sort: 'order',
     limit: 50,
+    draft: false,
+    overrideAccess: false,
     where: { _status: { equals: 'published' } },
   });
   return res.docs as unknown as Project[];

@@ -22,6 +22,24 @@
   --color-metal: #8c887d;          /* металл 3D-литеры (гарт, светлый сплав) */
   --color-focus: #14140f;
   --color-overlay: rgb(244 243 238 / 0.84); /* калька поверх страницы */
+  --color-stage: #171514;
+  --color-stage-text: #eee9df;
+  --color-stage-mute: #b5afa6;
+  --color-stage-line: #514b46;
+  --color-signal: #f15b3a;
+  --color-signal-press: #cf462b;
+  --color-control-stage-line: #777169;
+  --line-stage: var(--line-w) solid var(--color-stage-line);
+  --line-control-stage: var(--line-w) solid var(--color-control-stage-line);
+  --focus-ring-on-stage: 2px solid var(--color-stage-text);
+  --size-portrait-name: clamp(3.25rem, 15vw, 15rem);
+  --portrait-name-width: 62;
+  --portrait-name-weight: 540;
+  --portrait-name-leading: .9;
+  --portrait-name-tracking: -.045em;
+  --size-portrait-role: clamp(.875rem, 1.3vw, 1.125rem);
+  --portrait-screen-min: 43rem;
+  --portrait-crop: 50% 0%;
 
   /* ---- Шрифты (переменные задаёт next/font в fonts.ts) ------------------ */
   --font-display: var(--ff-science-gothic), 'Arial Narrow', sans-serif;

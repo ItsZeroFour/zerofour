@@ -1,13 +1,29 @@
 /* Контакты — последняя полоса журнала: одно действие, крупно */
 .section {
+  --color-paper: var(--color-stage);
+  --color-ink: var(--color-stage-text);
+  --color-ink-soft: var(--color-stage-text);
+  --color-mute: var(--color-stage-mute);
+  --color-line: var(--color-stage-line);
+  --color-line-strong: var(--color-stage-line);
+  --color-accent: var(--color-signal);
+  --color-accent-press: var(--color-signal-press);
+  --color-on-accent: var(--color-stage);
+  --color-accent-text: var(--color-signal);
+  --focus-ring: var(--focus-ring-on-stage);
+  --line-ink: var(--line-w) solid var(--color-stage-text);
+  --line: var(--line-stage);
   position: relative;
   z-index: var(--z-content);
-  width: min(100%, var(--grid-max));
+  width: 100%;
+  background: var(--color-stage);
+  color: var(--color-stage-text);
   margin-inline: auto;
   padding: var(--space-3xl) var(--grid-margin) var(--space-m);
   scroll-margin-top: var(--header-h);
   container-type: inline-size;
 }
+.head, .email, .links, .footer { max-width: var(--grid-max); margin-inline: auto; }
 
 .head {
   display: grid;

@@ -7,7 +7,7 @@ import type { CollectionAfterChangeHook, CollectionAfterDeleteHook, GlobalAfterC
  */
 function revalidateAll() {
   try {
-    revalidatePath('/[locale]', 'layout');
+    revalidatePath('/(site)/[locale]', 'layout');
   } catch {
     // вне запроса Next (например, в скрипте seed) ревалидация не нужна
   }

@@ -33,7 +33,7 @@ body::after {
   z-index: var(--z-grain);
   pointer-events: none;
   background-image: var(--grain);
-  opacity: var(--grain-opacity);
+  opacity: calc(var(--grain-opacity) * .4);
 }
 
 h1,

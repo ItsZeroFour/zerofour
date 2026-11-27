@@ -68,7 +68,6 @@ export async function Contacts({ site }: { site: SiteContent }) {
         <p>
           © {new Date().getFullYear()} {site.name}
         </p>
-        <p className={styles.colophon}>{t('colophon')}</p>
       </footer>
     </section>
   );

@@ -1,0 +1,21 @@
+.figure { position: absolute; z-index: 2; inset: 18% -16% 0 10%; pointer-events: none; }
+.stage { position: absolute; inset: 0; pointer-events: auto; touch-action: pan-y; }
+.image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--portrait-crop); transition: opacity var(--dur-slow) var(--ease-scene); }
+.second { opacity: 0; }
+.figure[data-frame='second'] .first { opacity: 0; }
+.figure[data-frame='second'] .second { opacity: 1; }
+.stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; visibility: hidden; }
+.figure[data-portrait-ready] .image { visibility: hidden; }
+.figure[data-portrait-ready] .stage canvas { visibility: visible; }
+.controls { position: absolute; z-index: 4; left: var(--grid-margin); right: var(--grid-margin); bottom: var(--space-2xl); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-s); pointer-events: auto; }
+.controls button { display: flex; align-items: center; gap: var(--space-xs); min-height: var(--tap-min); padding: var(--space-2xs) var(--space-xs); border-bottom: var(--line-stage); background: var(--color-stage); color: var(--color-stage-text); font-size: var(--step--2); text-align: left; transition: border-color var(--dur-fast) var(--ease-out); }
+.controls button:hover { border-color: var(--color-signal); }
+.controls button:active { color: var(--color-stage-mute); }
+.symbol { font-size: var(--step-2); }
+.counter { color: var(--color-stage-mute); }
+@media (min-width: 48rem) {
+  .figure { inset: 0 -2% 0 37%; }
+  .controls { bottom: var(--space-3xl); }
+  .controls button { font-size: var(--step--1); }
+}
+@media (prefers-reduced-motion: reduce) { .image { transition: none; } }

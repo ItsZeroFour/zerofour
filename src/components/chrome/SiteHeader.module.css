@@ -1,4 +1,14 @@
 .header {
+  --color-paper: var(--color-stage);
+  --color-ink: var(--color-stage-text);
+  --color-mute: var(--color-stage-mute);
+  --color-line: var(--color-stage-line);
+  --color-accent-text: var(--color-signal);
+  --color-accent: var(--color-signal);
+  --focus-ring: var(--focus-ring-on-stage);
+  --line-ink: var(--line-w) solid var(--color-stage-text);
+  --line: var(--line-stage);
+  color: var(--color-stage-text);
   position: sticky;
   top: 0;
   z-index: var(--z-header);
@@ -17,6 +27,7 @@
 }
 
 .brand {
+  min-width: var(--tap-min);
   display: inline-flex;
   align-items: center;
   gap: var(--space-2xs);
@@ -32,8 +43,8 @@
 .word {
   /* слово появляется в шапке, когда мачта ушла с экрана */
   display: inline-block;
-  opacity: 0;
-  translate: 0 0.4em;
+  opacity: 1;
+  translate: 0 0;
   transition:
     opacity var(--dur-base) var(--ease-out),
     translate var(--dur-base) var(--ease-out);
