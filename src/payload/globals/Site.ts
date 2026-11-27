@@ -149,7 +149,7 @@ export const Site: GlobalConfig = {
             type: 'array',
             localized: true,
             label: { ru: 'Вопросы и ответы', en: 'Questions and answers' },
-            admin: { description: { ru: 'Если список пуст, сайт показывает четыре ответа на основе подтверждённого профиля. Заполненный список заменяет их.', en: 'When empty, the site shows four answers based on the verified profile. Adding entries replaces those answers.' } },
+              admin: { description: { ru: 'Если список пуст, сайт показывает стандартные ответы. Заполненный список заменяет их.', en: 'When empty, the site shows the default answers. Adding entries replaces those answers.' } },
             fields: [
               { name: 'question', type: 'text', required: true, label: { ru: 'Вопрос', en: 'Question' } },
               { name: 'answer', type: 'textarea', required: true, label: { ru: 'Ответ', en: 'Answer' } },

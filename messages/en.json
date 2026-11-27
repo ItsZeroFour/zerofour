@@ -170,9 +170,45 @@
     "materials": {
       "question": "Where can I see the projects and source code?",
       "answer": "Choose a project in the Work section and open its case study. Available materials and links are collected there. For projects under NDA, I only share information approved for publication."
+    },
+    "backend": {
+      "question": "You are a frontend developer, but you also write backend code. How deep does that go?",
+      "answer": "I build server-side features for my own tasks and integrations using Node.js, Express, MongoDB, JWT, and Strapi. I have built an API for passport scanning, a ComfyUI integration, giveaway eligibility checks through the VK API, and data aggregation and delivery through ActiveMQ. I am not a dedicated backend engineer, but I can handle integrations independently without blocking the team."
+    },
+    "tooling": {
+      "question": "Do you work with Webpack and Babel?",
+      "answer": "Vite is my primary build tool. I am familiar with Webpack and Babel and can adapt to the team’s tooling when needed."
+    },
+    "ai": {
+      "question": "How do you use AI tools?",
+      "answer": "I use Codex and Claude Code to understand unfamiliar code, write tests, find bugs, and identify replacements for outdated libraries. I read and verify generated code myself. AI speeds up the work; it does not replace review or testing."
+    },
+    "quality": {
+      "question": "How do you approach testing and code quality?",
+      "answer": "I use Jest, React Testing Library, and Playwright. I write tests for forms, user flows, and error handling. I do code review and work with branches and pull requests."
+    },
+    "accessibility": {
+      "question": "What is your accessibility experience?",
+      "answer": "I independently built a version of an educational institution’s website for visually impaired users to meet GOST requirements. I pay attention to contrast, keyboard navigation, alt text, and semantics."
+    },
+    "english": {
+      "question": "What is your English level?",
+      "answer": "My English is B2. I read documentation and correspond in English. My spoken English is suitable for work, and I am ready for an interview in English."
+    },
+    "jobSearch": {
+      "question": "Why are you looking for a new role?",
+      "answer": "I want new challenges and room to grow. My current project has moved into maintenance, so I am open to new opportunities."
+    },
+    "rate": {
+      "question": "What is your rate?",
+      "answer": "I discuss it on a call based on the scope of work."
     }
   },
   "recommendations": {
+    "reference": "Professional reference",
+    "alexander": "Alexander",
+    "alexanderRole": "Technical Director, New Narrative",
+    "contactOnRequest": "Contact available on request",
     "label": "Feedback",
     "title": "Recommendations",
     "source": "Source"

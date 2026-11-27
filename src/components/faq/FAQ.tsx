@@ -5,7 +5,7 @@ import styles from './FAQ.module.css';
 export async function FAQ({ site }: { site: SiteContent }) {
   const t = await getTranslations('faq');
   const authored = site.faq?.filter(item => item.question.trim() && item.answer.trim());
-  const items = authored?.length ? authored : ['role', 'experience', 'stack', 'materials'].map(key => ({
+  const items = authored?.length ? authored : ['role', 'experience', 'stack', 'materials', 'backend', 'tooling', 'ai', 'quality', 'accessibility', 'english', 'jobSearch', 'rate'].map(key => ({
     id: key,
     question: t(`${key}.question`),
     answer: t(`${key}.answer`),

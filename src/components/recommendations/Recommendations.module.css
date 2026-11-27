@@ -12,4 +12,10 @@
 .recommendation strong { font-weight: 500; }
 .recommendation figcaption > span, .recommendation cite { color: var(--color-mute); }
 .recommendation cite { font: var(--step--2)/var(--leading-mono) var(--font-mono); }
+.reference { display: grid; gap: var(--space-l); }
+.reference > p { font-size: var(--step-2); line-height: var(--leading-text); }
+.reference > div { display: grid; align-content: start; gap: var(--space-2xs); font-size: var(--step--1); }
+.reference strong { font-weight: 500; }
+.reference span { color: var(--color-mute); }
 @media (min-width: 48rem) { .recommendation { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: var(--space-2xl); } }
+@media (min-width: 48rem) { .reference { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: var(--space-2xl); } }

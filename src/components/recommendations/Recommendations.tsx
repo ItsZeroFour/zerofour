@@ -4,7 +4,7 @@ import styles from './Recommendations.module.css';
 
 export async function Recommendations({ site }: { site: SiteContent }) {
   const items = site.recommendations?.filter(item => item.author.trim() && item.quote.trim());
-  if (!items?.length) return null;
+  const hasAlexander = items?.some(item => /александр|alexander|alexandr/i.test(item.author));
   const t = await getTranslations('recommendations');
 
   return (
@@ -15,7 +15,7 @@ export async function Recommendations({ site }: { site: SiteContent }) {
           <h2 id="recommendations-title">{t('title')}</h2>
         </header>
         <ol className={styles.list}>
-          {items.map((item, index) => (
+          {(items ?? []).map((item, index) => (
             <li key={item.id ?? index}>
               <figure className={styles.recommendation}>
                 <blockquote><p>{item.quote}</p></blockquote>
@@ -27,6 +27,10 @@ export async function Recommendations({ site }: { site: SiteContent }) {
               </figure>
             </li>
           ))}
+          {!hasAlexander ? <li className={styles.reference}>
+            <p>{t('reference')}</p>
+            <div><strong>{t('alexander')}</strong><span>{t('alexanderRole')}</span><span>{t('contactOnRequest')}</span></div>
+          </li> : null}
         </ol>
       </div>
     </section>
