@@ -12,7 +12,7 @@
     "clientsLabel": "Built for",
     "factsLabel": "In numbers",
     "underTitle": "Inside the interface",
-    "underText": "Appearance, behaviour, and decisions in code. Explore each side of my work through the projects below.",
+    "underText": "See how the projects look and work, and the decisions behind their interfaces.",
     "scrollHint": "Explore the projects",
     "leadDefault": "I build interfaces with React and Next.js. I especially enjoy complex problems. I’ve worked on projects used by tens and hundreds of thousands of people."
   },
@@ -40,7 +40,7 @@
     "index": "01",
     "label": "Work",
     "title": "Work",
-    "intro": "{count} projects: what the user sees and how it works. Each case explains my contribution.",
+    "intro": "{count} projects I worked on with a team. Each case shows what I was responsible for and how I approached it.",
     "client": "Client",
     "role": "Role",
     "years": "Years",
@@ -61,7 +61,7 @@
     "index": "02",
     "label": "Approach",
     "title": "How I work",
-    "intro": "My approach is easier to explain through actual work: the task, the solution I chose, and the reasons behind it.",
+    "intro": "The projects tell the story best: what needed doing, what I built, and why I chose that approach.",
     "mirror": "Type sort · mirrored",
     "print": "Impression · 1:1"
   },
@@ -82,14 +82,14 @@
     "intro": "I’m a frontend developer based in Moscow. I worked at New Narrative from July 2022 to October 2026.",
     "body": "I was one of two frontend developers at the studio. I helped the team choose technologies and design the architecture. When needed, I also worked on Node.js backends and deployed projects to VPS servers.",
     "focusLabel": "What interests me",
-    "focusText": "I especially enjoy complex frontend problems where the solution still needs to be found.",
+    "focusText": "I like digging into problems that do not have an obvious solution yet.",
     "reachLabel": "Education",
     "reachText": "Kazan Federal University. Bachelor’s degree in Computer Science and Computer Engineering.",
     "teamLabel": "Working with the team",
     "teamText": "I worked through layouts and user flows with designers, and agreed API contracts with backend developers.",
     "resume": "View résumé",
     "experienceLabel": "Experience",
-    "experienceIntro": "We used branches, pull requests, and code review. Before each release, the client checked the project on a staging domain; then we shipped to production."
+    "experienceIntro": "At New Narrative, I worked as part of a team. We discussed solutions, reviewed each other’s code, and released projects after they had been checked on staging."
   },
   "project": {
     "back": "Back to projects",
@@ -181,11 +181,11 @@
     },
     "ai": {
       "question": "How do you use AI tools?",
-      "answer": "I use Codex and Claude Code to understand unfamiliar code, write tests, find bugs, and identify replacements for outdated libraries. I read and verify generated code myself. AI speeds up the work; it does not replace review or testing."
+      "answer": "I use Codex and Claude Code to understand unfamiliar code, find bugs, write tests, and replace outdated libraries. I check the results myself and bring the changes to my teammates for review."
     },
     "quality": {
       "question": "How do you approach testing and code quality?",
-      "answer": "I use Jest, React Testing Library, and Playwright. I write tests for forms, user flows, and error handling. I do code review and work with branches and pull requests."
+      "answer": "I test forms, user flows, and error handling with Jest, React Testing Library, and Playwright. On the team, I worked through pull requests and took part in code review."
     },
     "accessibility": {
       "question": "What is your accessibility experience?",
@@ -198,10 +198,6 @@
     "jobSearch": {
       "question": "Why are you looking for a new role?",
       "answer": "The company I worked for has closed. I am now looking for a permanent role on a team where I can apply my experience and continue growing professionally."
-    },
-    "rate": {
-      "question": "What is your rate?",
-      "answer": "I discuss it on a call based on the scope of work."
     }
   },
   "recommendations": {

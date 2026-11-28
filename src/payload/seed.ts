@@ -168,8 +168,8 @@ const PROJECTS: ProjectSeed[] = [
     client: { ru: 'sdstroy21.ru и aobig.ru', en: 'sdstroy21.ru and aobig.ru' },
     role: { ru: 'Разработка и деплой', en: 'Build & deploy' },
     summary: {
-      ru: 'Два сайта на Next.js с серверным рендерингом: SEO, формы заявок и деплой под ключ.',
-      en: 'Two server-rendered Next.js sites: SEO, lead forms and turnkey deployment.',
+      ru: 'Два сайта на Next.js с серверным рендерингом: SEO, формы заявок и настройка деплоя.',
+      en: 'Two server-rendered Next.js sites: SEO, lead forms and deployment setup.',
     },
     highlights: {
       ru: ['Серверный рендеринг ради поисковой выдачи.', 'Формы заявок и аналитика.', 'Деплой и настройка домена.'],

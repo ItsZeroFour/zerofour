@@ -77,7 +77,7 @@ export function mountDossier(host: HTMLDivElement, initial: DossierContent, onRe
   });
 
   let open = false, progress = 0, aimX = 0, aimY = 0, lookX = 0, lookY = 0;
-  let raf = 0, last = 0, visible = true, disposed = false, ready = false, revision = 0;
+  let raf = 0, last = 0, visible = true, disposed = false, ready = false, imageReady = false, revision = 0;
   let frontTexture: THREE.CanvasTexture | null = null;
   let insideTexture: THREE.CanvasTexture | null = null;
   let current = initial;
@@ -113,6 +113,9 @@ export function mountDossier(host: HTMLDivElement, initial: DossierContent, onRe
     if (disposed) return;
     current = project;
     const version = ++revision;
+    ready = false;
+    imageReady = !project.imageUrl;
+    onUnavailable();
     const face = canvas();
     const ctx = face.getContext('2d')!;
     ctx.fillStyle = paper; ctx.fillRect(0, 0, 1280, 830);
@@ -141,6 +144,7 @@ export function mountDossier(host: HTMLDivElement, initial: DossierContent, onRe
         ctx.fillStyle = signal; ctx.fillRect(58, 744, 1164, 6);
         ctx.fillStyle = ink; ctx.font = `400 24px ${textFont}`;
         ctx.fillText(`${project.number} / ${project.subtitle}`, 58, 790, 1164);
+        imageReady = true;
         updateFace();
       };
       // Use the site's image endpoint so remote CMS media can be used as a canvas texture.
@@ -200,7 +204,7 @@ export function mountDossier(host: HTMLDivElement, initial: DossierContent, onRe
     }
     camera.position.set(centerX, centerY, high);
     renderer.render(scene, camera);
-    if (!ready) { ready = true; onReady(); }
+    if (!ready && imageReady) { ready = true; onReady(); }
     const moving = Math.abs((open ? 1 : 0) - progress) + Math.abs(aimX - lookX) + Math.abs(aimY - lookY) > .001;
     raf = moving ? requestAnimationFrame(frame) : 0;
     if (!raf) last = 0;

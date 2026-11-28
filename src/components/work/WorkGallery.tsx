@@ -59,6 +59,8 @@ export function WorkGallery({ projects }: { projects: Project[] }) {
 
   if (!active) return null;
   const choose = (value: Project['id']) => {
+    if (value === active.id) return;
+    setReady(false);
     setSelected(value);
     setOpen(false);
     dossier.current?.setOpen(false);
