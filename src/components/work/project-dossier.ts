@@ -113,6 +113,8 @@ export function mountDossier(host: HTMLDivElement, initial: DossierContent, onRe
     if (disposed) return;
     current = project;
     const version = ++revision;
+    open = false;
+    progress = aimX = aimY = lookX = lookY = 0;
     ready = false;
     imageReady = !project.imageUrl;
     onUnavailable();
