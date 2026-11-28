@@ -113,11 +113,7 @@ export function mountDossier(host: HTMLDivElement, initial: DossierContent, onRe
     if (disposed) return;
     current = project;
     const version = ++revision;
-    open = false;
-    progress = aimX = aimY = lookX = lookY = 0;
-    ready = false;
     imageReady = !project.imageUrl;
-    onUnavailable();
     const face = canvas();
     const ctx = face.getContext('2d')!;
     ctx.fillStyle = paper; ctx.fillRect(0, 0, 1280, 830);
@@ -132,7 +128,6 @@ export function mountDossier(host: HTMLDivElement, initial: DossierContent, onRe
       if (disposed || revision !== version) return;
       frontTexture?.dispose(); frontTexture = makeTexture(face); front.map = frontTexture; lining.map = frontTexture; front.needsUpdate = lining.needsUpdate = true; wake();
     };
-    updateFace();
     if (project.imageUrl) {
       const image = new Image();
       image.onload = () => {
@@ -149,9 +144,14 @@ export function mountDossier(host: HTMLDivElement, initial: DossierContent, onRe
         imageReady = true;
         updateFace();
       };
+      image.onerror = () => {
+        if (disposed || revision !== version) return;
+        imageReady = true;
+        updateFace();
+      };
       // Use the site's image endpoint so remote CMS media can be used as a canvas texture.
       image.src = `/_next/image?url=${encodeURIComponent(project.imageUrl)}&w=1080&q=75`;
-    }
+    } else updateFace();
     const page = canvas();
     const inner = page.getContext('2d')!;
     inner.fillStyle = paper; inner.fillRect(0, 0, 1280, 830);
